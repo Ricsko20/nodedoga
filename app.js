@@ -1,11 +1,16 @@
 import express, { json } from 'express'
-import path from 'path'
 import { fileURLToPath } from 'url'
+import path from 'path'
+
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)))
 
 const app = express()
 app.use(express.json())
 
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)))
+
+app.get("/", (req, res, next) => {
+    res.sendFile('/nodedoga/nodedoga/public/index.html')
+})
 
 const users = [
     { id: "1",  name: "John Doe" },
